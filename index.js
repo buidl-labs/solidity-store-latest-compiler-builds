@@ -6,7 +6,7 @@ const axios = require("axios");
 
 const BASE_URL = "https://solc-bin.ethereum.org/bin/";
 const RELEASE_LIST_JSON = "list.json";
-const BASE_FOLDER_PATH = path.resolve(__dirname, "releases");
+const BASE_FOLDER_PATH = path.resolve(__dirname, "solidity_compiler_releases");
 
 if (!fs.existsSync(BASE_FOLDER_PATH)) {
   fs.mkdirSync(BASE_FOLDER_PATH);
