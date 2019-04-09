@@ -1,5 +1,3 @@
-//
-
 const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
@@ -15,11 +13,11 @@ if (!fs.existsSync(BASE_FOLDER_PATH)) {
 const downloadFile = async release => {
   try {
     const releaseFilePath = path.resolve(BASE_FOLDER_PATH, release);
-    const doesFileAlreadyExist = await fs.state(releaseFilePath); 
+    const doesFileAlreadyExist = await fs.state(releaseFilePath);
 
-    console.log(doesFileAlreadyExist); 
+    console.log(doesFileAlreadyExist);
 
-    if(doesFileAlreadyExist){
+    if (doesFileAlreadyExist) {
       const writer = fs.createWriteStream(releaseFilePath);
 
       const getFile = await axios({
@@ -34,18 +32,12 @@ const downloadFile = async release => {
         writer.on("finish", resolve);
         writer.on("error", reject);
       });
+    } else {
+      console.log(releasePath);
+      console.log(doesFileAlreadyExist);
+      return true;
     }
-    else {
-      console.log(releasePath); 
-      console.log(doesFileAlreadyExist); 
-      return true; 
-    }
-
-
-  } catch (err) {
-
-  }
-
+  } catch (err) {}
 };
 
 const fetchReleases = async () => {
